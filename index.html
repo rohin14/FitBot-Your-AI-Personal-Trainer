@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FitBot - Your Personal AI Fitness Coach</title>
+    <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            color: #333;
+            background-color: #f9f9f9;
+            overflow-x: hidden;
+        }
+
+        /* Navbar */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 30px;
+            background-color: #fff;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .navbar a {
+            color: #333;
+            font-size: 1em;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        .navbar a:hover {
+            color: #e74c3c;
+        }
+
+        /* Hero Section */
+        .hero {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-image: url('full-shot-man-jumping.jpg'); /* Replace with your actual image path */
+            background-size: cover;
+            background-position: center;
+            color: #fff;
+            height: 80vh;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero-overlay {
+            background-color: rgba(0, 0, 0, 0.5);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 600px;
+            padding: 20px;
+            animation: fadeInSlideUp 1.5s ease-out; /* Hero text animation */
+        }
+
+        @keyframes fadeInSlideUp {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            text-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero p {
+            font-size: 1.2em;
+            margin-bottom: 30px;
+            text-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .cta-button {
+            background-color: #ffdd57;
+            color: #333;
+            padding: 15px 30px;
+            border-radius: 5px;
+            font-size: 1.1em;
+            font-weight: bold;
+            text-decoration: none;
+            transition: background 0.3s, transform 0.3s;
+        }
+
+        .cta-button:hover {
+            background-color: #e74c3c;
+            color: #fff;
+            transform: scale(1.05);
+        }
+
+        /* Features Section */
+        .features {
+            padding: 50px 20px;
+            background-color: #fff;
+            text-align: center;
+        }
+
+        .features h2 {
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+
+        .features-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .feature {
+            flex: 1 1 300px;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .feature:hover {
+            transform: scale(1.05);
+            box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .feature h3 {
+            font-size: 1.5em;
+            margin-bottom: 15px;
+            color: #e74c3c;
+        }
+
+        .feature p {
+            font-size: 1em;
+            color: #666;
+        }
+
+        /* About Us Section */
+        .about-us {
+            padding: 50px 20px;
+            background-color: #f4f4f4;
+            text-align: center;
+            color: #333;
+        }
+
+        .about-us h2 {
+            font-size: 2em;
+            margin-bottom: 20px;
+            color: #e74c3c;
+        }
+
+        .about-us p {
+            font-size: 1.1em;
+            color: #555;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+            font-size: 0.9em;
+        }
+
+        /* References Section */
+        .references {
+            background-color: #e8e8e8;
+            padding: 20px;
+            text-align: center;
+            font-size: 0.9em;
+        }
+
+        .references h3 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .references a {
+            color: #e74c3c;
+            text-decoration: none;
+            font-weight: bold;
+            margin: 0 10px;
+        }
+
+        .references a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2em;
+            }
+            .hero p {
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <div class="navbar">
+        <a href="#home">FitBot</a>
+        <div>
+            <a href="#about">About Us</a>
+            <a href="workout_planner.html">Workout Planner</a>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <div id="home" class="hero">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1>Welcome to FitBot</h1>
+            <p>Your Personal AI Fitness Coach, tailored to your unique goals and lifestyle.</p>
+            <a href="#features" class="cta-button">Get Started</a>
+        </div>
+    </div>
+
+    <!-- Features Section -->
+    <div id="features" class="features">
+        <h2>What Makes FitBot Unique?</h2>
+        <div class="features-container">
+            <div class="feature">
+                <h3>Personalized Workout Plans</h3>
+                <p>FitBot designs workout routines specifically for your fitness level, preferences, and goals.</p>
+            </div>
+            <div class="feature">
+                <h3>Nutrition & Diet Advice</h3>
+                <p>Receive tailored guidance on healthy eating to complement your workout plan.</p>
+            </div>
+            <div class="feature">
+                <h3>Goal Tracking & Motivation</h3>
+                <p>Track your progress, receive daily motivation, and optimize your results.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- About Us Section -->
+    <div id="about" class="about-us">
+        <h2>About Us</h2>
+        <p>This website was made from scratch by <strong>Rohin Pithwa-I050</strong>, <strong>Jash Vasa - I068</strong>, and <strong>Jash Raval - I075</strong>.</p>
+        <p>We are 4th-year BTech AI students. With this chatbot, we aim to bring a personalized AI trainer to everyone, creating tailored workout and diet regimes that cater to individual needs.</p>
+        <h3>Certified by a Nutrionist and Trainer</h3>
+    </div>
+
+    <!-- References Section -->
+    <div class="references">
+        <h3>References</h3>
+        <a href="https://www.menshealth.com/" target="_blank">Men's Health</a>
+        <a href="https://www.webmd.com/" target="_blank">WebMD</a>
+        <a href="https://www.healthline.com/" target="_blank">Healthline</a>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        &copy; 2024 FitBot. All rights reserved.
+    </div>
+
+    <!-- Botpress Chatbot Scripts -->
+    <script src="https://cdn.botpress.cloud/webchat/v2.2/inject.js"></script>
+    <script src="https://files.bpcontent.cloud/2024/11/06/06/20241106061949-NH9SXB8K.js"></script>
+
+    <script>
+        window.botpressWebChat.init({
+            botId: 'YOUR_BOT_ID',  // Replace 'YOUR_BOT_ID' with the actual Bot ID if needed
+            hostUrl: 'https://cdn.botpress.cloud/webchat/v2.2',
+            messagingUrl: 'https://cdn.botpress.cloud',
+            botName: 'FitBot',
+            hideWidget: true,  // Hide the widget initially
+            stylesheet: `
+                .bp-chat-container { 
+                    background-color: #333; 
+                    border-radius: 10px; 
+                }
+                .bp-chat-header {
+                    background-color: #e74c3c;
+                    color: #fff;
+                }
+                .bp-chat {
+                    font-family: Arial, sans-serif;
+                }
+            `
+        });
+    </script>
+</body>
+</html>

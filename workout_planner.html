@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Workout Planner</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            color: #333;
+            background-color: #f9f9f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 900px;
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.1);
+            border-radius: 12px;
+            margin-top: 30px;
+        }
+
+        h1 {
+            color: #e74c3c;
+            font-size: 2em;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .table-header, .exercise-row {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr 1fr auto;
+            gap: 10px;
+            padding: 10px 0;
+            align-items: center;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .table-header {
+            font-weight: bold;
+            background-color: #f4f4f4;
+            color: #555;
+        }
+
+        .exercise-row input {
+            width: 90%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            text-align: center;
+            font-size: 0.9em;
+        }
+
+        .button-group {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+            gap: 10px;
+        }
+
+        .btn {
+            padding: 10px 15px;
+            font-size: 1em;
+            font-weight: bold;
+            color: #fff;
+            background-color: #e74c3c;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.2s;
+        }
+
+        .btn:hover {
+            background-color: #c0392b;
+            transform: scale(1.05);
+        }
+
+        .remove-btn {
+            padding: 5px 10px;
+            background-color: #e74c3c;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.2s;
+        }
+
+        .remove-btn:hover {
+            background-color: #c0392b;
+        }
+
+        .back-button {
+            display: inline-block;
+            margin-bottom: 20px;
+            padding: 10px 20px;
+            background-color: #e74c3c;
+            color: #fff;
+            border-radius: 5px;
+            font-weight: bold;
+            text-decoration: none;
+            transition: background 0.3s;
+            text-align: center;
+        }
+
+        .back-button:hover {
+            background-color: #c0392b;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Go Back Button -->
+        <a href="index.html" class="back-button">Go Back to Main Page</a>
+
+        <h1>Workout Planner</h1>
+
+        <div class="table-header">
+            <div>Exercise</div>
+            <div>Sets</div>
+            <div>Reps</div>
+            <div>Weight (kg)</div>
+            <div>Duration (min)</div>
+            <div></div> <!-- Empty column for remove button -->
+        </div>
+
+        <div id="workoutTable">
+            <!-- Exercise rows will be added here dynamically -->
+        </div>
+
+        <div class="button-group">
+            <button class="btn" onclick="addExercise()">Add Exercise</button>
+            <button class="btn" onclick="saveAsExcel()">Save as Excel</button>
+            <button class="btn" onclick="saveAsPDF()">Save as PDF</button>
+        </div>
+    </div>
+
+    <!-- jsPDF and SheetJS Libraries for Excel and PDF exports -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.9/xlsx.full.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.13/jspdf.plugin.autotable.min.js"></script>
+
+    <script>
+        // Function to add an exercise row
+        function addExercise() {
+            const workoutTable = document.getElementById('workoutTable');
+            const row = document.createElement('div');
+            row.classList.add('exercise-row');
+
+            row.innerHTML = `
+                <div><input type="text" placeholder="Exercise Name"></div>
+                <div><input type="number" placeholder="Sets" min="1" oninput="validatePositiveNumber(this)"></div>
+                <div><input type="number" placeholder="Reps" min="1" oninput="validatePositiveNumber(this)"></div>
+                <div><input type="number" placeholder="Weight" min="0" oninput="validatePositiveNumber(this)"></div>
+                <div><input type="number" placeholder="Duration" min="1" oninput="validatePositiveNumber(this)"></div>
+                <div><button class="remove-btn" onclick="removeExercise(this)">Remove</button></div>
+            `;
+
+            workoutTable.appendChild(row);
+        }
+
+        // Validate inputs to prevent negative values and ensure numeric input
+        function validatePositiveNumber(input) {
+            if (input.value < 0) {
+                input.value = '';
+                alert("Please enter a positive value.");
+            }
+        }
+
+        // Function to remove an exercise row
+        function removeExercise(button) {
+            button.closest('.exercise-row').remove();
+        }
+
+        // Function to save the table as an Excel file
+        function saveAsExcel() {
+            const workbook = XLSX.utils.book_new();
+            const worksheetData = [["Exercise", "Sets", "Reps", "Weight", "Duration"]];
+
+            document.querySelectorAll('.exercise-row').forEach(row => {
+                const rowData = [];
+                row.querySelectorAll('input').forEach(input => rowData.push(input.value || ''));
+                worksheetData.push(rowData);
+            });
+
+            const worksheet = XLSX.utils.aoa_to_sheet(worksheetData);
+            XLSX.utils.book_append_sheet(workbook, worksheet, 'Workout Plan');
+            XLSX.writeFile(workbook, 'Workout_Plan.xlsx');
+        }
+
+        // Function to save the table as a PDF
+        function saveAsPDF() {
+            const { jsPDF } = window.jspdf;
+            const pdf = new jsPDF();
+            pdf.text("Workout Plan", 14, 10);
+
+            const rows = [];
+            document.querySelectorAll('.exercise-row').forEach(row => {
+                const rowData = [];
+                row.querySelectorAll('input').forEach(input => rowData.push(input.value || ''));
+                rows.push(rowData);
+            });
+
+            pdf.autoTable({
+                head: [["Exercise", "Sets", "Reps", "Weight", "Duration"]],
+                body: rows,
+                startY: 20,
+            });
+
+            pdf.save('Workout_Plan.pdf');
+        }
+    </script>
+</body>
+</html>
