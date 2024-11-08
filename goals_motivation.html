@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Goals & Motivation | FitBot</title>
+    <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
+            overflow-x: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.1);
+            border-radius: 12px;
+            margin-top: 30px;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInSlideUp 1.5s ease-out forwards; /* Added animation */
+        }
+
+        @keyframes fadeInSlideUp {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h1 {
+            color: #e74c3c;
+            font-size: 2em;
+            text-align: center;
+            margin-bottom: 20px;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInSlideUp 1.5s ease-out forwards;
+            animation-delay: 0.3s;
+        }
+
+        h2 {
+            color: #333;
+            font-size: 1.5em;
+            margin-bottom: 10px;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInSlideUp 1.5s ease-out forwards;
+            animation-delay: 0.6s;
+        }
+
+        p, ul li {
+            font-size: 1em;
+            line-height: 1.6;
+            margin-bottom: 15px;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInSlideUp 1.5s ease-out forwards;
+            animation-delay: 0.9s;
+        }
+
+        ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        ul li {
+            font-size: 1em;
+            line-height: 1.6;
+            background-color: #f4f4f4;
+            padding: 10px;
+            border-radius: 8px;
+            margin: 10px 0;
+            box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        ul li:hover {
+            transform: scale(1.02);
+        }
+
+        .back-button {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #e74c3c;
+            color: #fff;
+            border-radius: 5px;
+            font-weight: bold;
+            text-decoration: none;
+            transition: background 0.3s, transform 0.2s;
+        }
+
+        .back-button:hover {
+            background-color: #c0392b;
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Stay on Track with FitBot’s Goals & Motivation Support</h1>
+
+        <h2>Why Goal Setting and Motivation Matter</h2>
+        <p>Setting clear fitness goals and staying motivated are key factors in long-term success. Research shows that defining your goals:</p>
+        <ul>
+            <li><strong>Improves Focus and Consistency:</strong> Clear goals give you a sense of purpose, making it easier to stay consistent with your workouts.</li>
+            <li><strong>Boosts Motivation:</strong> Tracking progress fuels motivation, helping you celebrate small wins that keep you pushing forward.</li>
+            <li><strong>Supports Habit-Building:</strong> Setting and achieving goals promotes healthy habits that last, making fitness a sustainable part of your lifestyle.</li>
+            <li><strong>Increases Accountability:</strong> Defining your goals makes you more accountable, helping you stay on track and feel accomplished as you progress.</li>
+        </ul>
+
+        <h2>How FitBot Keeps You Motivated</h2>
+        <ul>
+            <li><strong>Personalized Goal Setting:</strong> FitBot helps you define and adjust fitness goals that are realistic and tailored to your abilities.</li>
+            <li><strong>Progress Tracking:</strong> Visualize your achievements over time with tracking tools that highlight your improvements in strength, endurance, and more.</li>
+            <li><strong>Daily Motivation & Reminders:</strong> FitBot provides encouraging messages and reminders to keep you focused and excited about your progress.</li>
+            <li><strong>Milestone Celebrations:</strong> Celebrate each milestone with FitBot’s notifications and rewards, reinforcing the positive changes you’re making.</li>
+        </ul>
+
+        <h2>Why FitBot’s Motivation Support Stands Out</h2>
+        <p>FitBot does more than set goals—it keeps you motivated with regular updates and encouragement. By breaking big goals into achievable steps and celebrating every success, FitBot ensures that you stay engaged and excited about reaching your potential.</p>
+
+        <a href="index.html" class="back-button">Go Back to Main Page</a>
+    </div>
+
+</body>
+</html>

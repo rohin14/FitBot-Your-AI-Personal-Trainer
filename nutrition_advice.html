@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nutrition & Diet Advice | FitBot</title>
+    <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
+            overflow-x: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.1);
+            border-radius: 12px;
+            margin-top: 30px;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInSlideUp 1.5s ease-out forwards; /* Added animation */
+        }
+
+        @keyframes fadeInSlideUp {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h1 {
+            color: #e74c3c;
+            font-size: 2em;
+            text-align: center;
+            margin-bottom: 20px;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInSlideUp 1.5s ease-out forwards;
+            animation-delay: 0.3s;
+        }
+
+        h2 {
+            color: #333;
+            font-size: 1.5em;
+            margin-bottom: 10px;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInSlideUp 1.5s ease-out forwards;
+            animation-delay: 0.6s;
+        }
+
+        p, ul li {
+            font-size: 1em;
+            line-height: 1.6;
+            margin-bottom: 15px;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInSlideUp 1.5s ease-out forwards;
+            animation-delay: 0.9s;
+        }
+
+        ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        ul li {
+            font-size: 1em;
+            line-height: 1.6;
+            background-color: #f4f4f4;
+            padding: 10px;
+            border-radius: 8px;
+            margin: 10px 0;
+            box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        ul li:hover {
+            transform: scale(1.02);
+        }
+
+        .back-button {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #e74c3c;
+            color: #fff;
+            border-radius: 5px;
+            font-weight: bold;
+            text-decoration: none;
+            transition: background 0.3s, transform 0.2s;
+        }
+
+        .back-button:hover {
+            background-color: #c0392b;
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Achieving Your Goals with Nutrition & Diet Advice from FitBot</h1>
+
+        <h2>Why Nutrition & Diet Matter</h2>
+        <p>Fueling your body correctly plays a significant role in everything from muscle growth to energy levels and weight management. Proper nutrition:</p>
+        <ul>
+            <li><strong>Boosts Energy & Performance:</strong> The right foods keep you energized and improve workout performance.</li>
+            <li><strong>Supports Recovery & Muscle Growth:</strong> Nutrient-dense foods aid in muscle repair and growth after intense workouts.</li>
+            <li><strong>Assists in Weight Management:</strong> Balanced meals help manage weight effectively, supporting both weight loss and muscle gain goals.</li>
+            <li><strong>Promotes Long-Term Health:</strong> A healthy diet reduces the risk of chronic illnesses, improving overall health and longevity.</li>
+        </ul>
+
+        <h2>How FitBot's Nutrition & Diet Advice Helps You</h2>
+        <ul>
+            <li><strong>Personalized Meal Suggestions:</strong> FitBot offers meal ideas tailored to your goals, whether for muscle gain, weight loss, or a balanced diet.</li>
+            <li><strong>Dietary Adaptations:</strong> Whether you're vegan, gluten-free, or have other dietary needs, FitBot provides advice that fits your lifestyle.</li>
+            <li><strong>Macronutrient Tracking:</strong> FitBot helps track proteins, carbs, and fats, optimizing each meal for your fitness journey.</li>
+            <li><strong>Daily Wellness Tips:</strong> Receive tips on hydration, meal timing, and healthy snacking to support long-term wellness.</li>
+        </ul>
+
+        <h2>Why FitBot's Nutrition & Diet Advice Stands Out</h2>
+        <p>With FitBot, nutrition becomes an achievable, enjoyable part of your routine. Say goodbye to restrictive diets and generic advice. FitBot tailors its guidance to make healthy eating feel easy and enjoyable, with achievable steps that help you reach your goals.</p>
+
+        <a href="index.html" class="back-button">Go Back to Main Page</a>
+    </div>
+
+</body>
+</html>
